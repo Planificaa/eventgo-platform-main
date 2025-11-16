@@ -1,0 +1,6 @@
+@Eventgo.Platform.API_HostAddress = http://localhost:5247
+
+GET {{Eventgo.Platform.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
