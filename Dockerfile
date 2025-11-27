@@ -15,15 +15,15 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS builder
 WORKDIR /app
 # Copy the project files
 # Copy the project files and restore dependencies
-COPY Eventify.Platform.API/*.csproj Eventify.Platform.API/
+COPY Eventgo.Platform.API/*.csproj Eventgo.Platform.API/
 # Restore dependencies
-RUN dotnet restore ./Eventify.Platform.API
+RUN dotnet restore ./Eventgo.Platform.API
 # Copy the rest of the application files
 COPY . .
 
 # Step 2: Deploy the application to builder stage
 # Publish the application in Release mode
-RUN dotnet publish ./Eventify.Platform.API -c Release -o out
+RUN dotnet publish ./Eventgo.Platform.API -c Release -o out
 
 # Step 3: Publish to Production and Run the application
 # Use the official .NET runtime image to run the application
@@ -34,4 +34,4 @@ WORKDIR /app
 COPY --from=builder /app/out .
 EXPOSE 80
 # Set EntryPoint to run the application
-ENTRYPOINT ["dotnet", "Eventify.Platform.API.dll"]
+ENTRYPOINT ["dotnet", "Eventgo.Platform.API.dll"]
